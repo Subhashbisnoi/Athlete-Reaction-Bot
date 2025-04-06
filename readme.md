@@ -1,55 +1,62 @@
-# Agility Testing Bot - Raspberry Pi Project
+# Athlete Agility Test Bot 🏃‍♂️💨
 
-```python
-"""
-AGILITY TESTING BOT
-A system to measure athlete reaction time and speed using servo-controlled laser targeting
+This project is a small bot designed to test an athlete's agility, reaction time, and speed in different directions. The system consists of two servo motors that control the movement of a laser pointer, randomly projecting it onto the floor within a defined rectangular area. An ultrasonic sensor detects when a foot is placed on the laser point, and the system measures the reaction time and movement speed over multiple iterations to generate a performance report.
 
-HARDWARE SETUP:
-- Raspberry Pi (any model with GPIO)
-- 2x SG90 Servo Motors (horizontal/vertical movement)
-- 5V Laser Diode Module
-- HC-SR04 Ultrasonic Sensor
-- 5V 2A Power Supply (recommended)
+## Features ✨
+- 🎯 **Laser-based agility test** with random movement  
+- ⚙️ **Two servo motors** controlling horizontal and vertical laser direction  
+- 🔎 **Ultrasonic sensor** detects foot placement  
+- ⏱️ **Reaction time & speed measurement** for performance tracking  
+- 📊 **Report generation** with recorded times and distances  
 
-CIRCUIT CONNECTIONS:
-GPIO18 → Horizontal Servo (PWM)
-GPIO19 → Vertical Servo (PWM) 
-GPIO23 → Ultrasonic Trig
-GPIO24 → Ultrasonic Echo
-5V → All VCC connections
-GND → All ground connections
+## Components Used 🛠️
+- **Raspberry Pi** (for control and processing)  
+- **Servo Motors (2x)** (to control the laser pointer in horizontal and vertical directions)  
+- **Laser Pointer** (to mark random positions on the floor)  
+- **Ultrasonic Sensor (HC-SR04)** (to detect foot placement)  
+- **Wires and Power Supply** (for connections)  
 
-INSTALLATION:
-1. sudo apt-get install python3-rpi.gpio
-2. git clone https://github.com/your-repo/agility-testing-bot.git
-3. cd agility-testing-bot
-4. python3 agility_tester.py
+## How It Works ⚡
+1. The horizontal and vertical servo motors move to **random angles** within the defined range.  
+2. The laser pointer moves accordingly and marks a position on the floor.  
+3. The system **starts a timer** and waits for the athlete to step on the marked spot.  
+4. Once the **ultrasonic sensor detects** a foot at the expected position, the timer stops.  
+5. The system logs the **reaction time** and **distance moved**.  
+6. This process repeats for **10-15 iterations**.  
+7. A **performance report** is generated with all recorded reaction times and distances.  
 
-CONFIGURATION (in agility_tester.py):
-LASER_HEIGHT = 15      # Height in cm
-HORIZONTAL_RANGE = 30  # Degrees (±30)
-VERTICAL_RANGE = 30    # Degrees (0 to -30)
-TOLERANCE = 2          # Detection threshold in cm
-NUM_TRIALS = 10        # Number of test iterations
+## Installation & Setup 🚀
+### 1. Set up Raspberry Pi:
+- Install the Raspberry Pi OS and enable GPIO control.  
+- Connect the **servos, ultrasonic sensor, and laser pointer**.  
 
-FEATURES:
-- 🎯 Random laser targeting within configured range
-- 🦶 Foot placement detection via ultrasonic sensor
-- ⏱️ Reaction time measurement between targets
-- 📏 Automatic distance calculation
-- 📊 Performance report generation
+### 2. Install required Python libraries:
+```bash
+pip install RPi.GPIO
+```
 
-SAMPLE OUTPUT:
-=== Test Report ===
-Trial  Distance(cm)  Time(s)  Speed(cm/s)
-1      45.32         0.87     52.09
-...
-Average Speed: 51.25 cm/s
-Total Distance: 412.50 cm
-Total Time: 8.05 s
+### 3. Run the script:
+```bash
+python bot.py
+```
 
-TROUBLESHOOTING:
-- Servo jitter → Use dedicated 5V power supply
-- False readings → Adjust TOLERANCE value
-- Laser misalignment → Calibrate servo angles
+### 4. View the report:
+- After completing the test, a **report will be saved** as `agility_report.txt`.  
+
+## Customization 🔧
+- Adjust the **servo angle ranges** to modify the laser movement area.  
+- Change the **ultrasonic sensor threshold** to fine-tune foot detection sensitivity.  
+- Modify the **number of test iterations** based on training requirements.  
+
+## Limitations ❗
+- ❌ Works best indoors with controlled lighting.  
+- 📏 The accuracy of foot detection depends on the ultrasonic sensor's precision.  
+- 🤔 The test area should be **free of obstacles** to avoid incorrect detections.  
+
+## Future Improvements 🚀
+- 📷 **Use a camera-based system** for more precise movement tracking.  
+- 📊 **Implement real-time visualization** of athlete movement.  
+- 📱 **Develop a mobile app** to sync and analyze performance data.  
+
+## License 📜
+This project is **open-source** and free to use for **personal and educational purposes**.  
